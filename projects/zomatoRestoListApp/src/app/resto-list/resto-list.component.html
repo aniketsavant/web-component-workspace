@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Restaurant List</h2>
+    <p>Click on restauarant for details:</p>            
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Resto Name</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let list of restoListData; let i = index">
+          <td>{{i+1}}</td>
+          <td (click)="onRestoNameClick(list)">{{list.restaurant?.name}}</td>
+          <td>{{list.restaurant?.location?.address}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

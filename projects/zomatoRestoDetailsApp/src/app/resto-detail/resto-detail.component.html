@@ -1,0 +1,15 @@
+<div>
+    <h2>Restaurant Detail:</h2>
+    <p><strong>Name:</strong> {{restoDetail.name}} <a href="{{restoDetail.url}}">goto page</a></p>
+    <p><strong>Address:</strong> {{restoDetail.location?.address}}</p>
+    <p><strong>Timings:</strong> {{restoDetail.timings}}</p>
+    <p [class.color] = "restoDetail.user_rating?.rating_color"><strong>User Rating:</strong> {{restoDetail.user_rating?.aggregate_rating}}* {{restoDetail.user_rating?.rating_text}}</p>
+    <p><a href="{{restoDetail?.photos_url}}"><strong>See Photos here..</strong></a></p>
+    <p><strong>Phone Numbers:</strong> {{restoDetail.phone_numbers}}</p>
+    <p><strong>Highlights:</strong> </p>
+    <ul class="list-group" *ngFor="let data of restoDetail.highlights">
+        <li class="list-group-item">{{data}}</li>
+    </ul>
+
+    <button (click)="backToListPage()">Back To List</button>
+</div>

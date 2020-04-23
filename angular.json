@@ -1,0 +1,546 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "loginApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/loginApp",
+      "sourceRoot": "projects/loginApp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/loginApp",
+            "index": "projects/loginApp/src/index.html",
+            "main": "projects/loginApp/src/main.ts",
+            "polyfills": "projects/loginApp/src/polyfills.ts",
+            "tsConfig": "projects/loginApp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/loginApp/src/favicon.ico",
+              "projects/loginApp/src/assets"
+            ],
+            "styles": [
+              "projects/loginApp/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/loginApp/src/environments/environment.ts",
+                  "with": "projects/loginApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "loginApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "loginApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "loginApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/loginApp/src/test.ts",
+            "polyfills": "projects/loginApp/src/polyfills.ts",
+            "tsConfig": "projects/loginApp/tsconfig.spec.json",
+            "karmaConfig": "projects/loginApp/karma.conf.js",
+            "assets": [
+              "projects/loginApp/src/favicon.ico",
+              "projects/loginApp/src/assets"
+            ],
+            "styles": [
+              "projects/loginApp/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/loginApp/tsconfig.app.json",
+              "projects/loginApp/tsconfig.spec.json",
+              "projects/loginApp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/loginApp/e2e/protractor.conf.js",
+            "devServerTarget": "loginApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "loginApp:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "headerApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/headerApp",
+      "sourceRoot": "projects/headerApp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/headerApp",
+            "index": "projects/headerApp/src/index.html",
+            "main": "projects/headerApp/src/main.ts",
+            "polyfills": "projects/headerApp/src/polyfills.ts",
+            "tsConfig": "projects/headerApp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/headerApp/src/favicon.ico",
+              "projects/headerApp/src/assets"
+            ],
+            "styles": [
+              "projects/headerApp/src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/headerApp/src/environments/environment.ts",
+                  "with": "projects/headerApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "headerApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "headerApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "headerApp:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/headerApp/src/test.ts",
+            "polyfills": "projects/headerApp/src/polyfills.ts",
+            "tsConfig": "projects/headerApp/tsconfig.spec.json",
+            "karmaConfig": "projects/headerApp/karma.conf.js",
+            "assets": [
+              "projects/headerApp/src/favicon.ico",
+              "projects/headerApp/src/assets"
+            ],
+            "styles": [
+              "projects/headerApp/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/headerApp/tsconfig.app.json",
+              "projects/headerApp/tsconfig.spec.json",
+              "projects/headerApp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/headerApp/e2e/protractor.conf.js",
+            "devServerTarget": "headerApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "headerApp:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "zomatoRestoListApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/zomatoRestoListApp",
+      "sourceRoot": "projects/zomatoRestoListApp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/zomatoRestoListApp",
+            "index": "projects/zomatoRestoListApp/src/index.html",
+            "main": "projects/zomatoRestoListApp/src/main.ts",
+            "polyfills": "projects/zomatoRestoListApp/src/polyfills.ts",
+            "tsConfig": "projects/zomatoRestoListApp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/zomatoRestoListApp/src/favicon.ico",
+              "projects/zomatoRestoListApp/src/assets"
+            ],
+            "styles": [
+              "projects/zomatoRestoListApp/src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/zomatoRestoListApp/src/environments/environment.ts",
+                  "with": "projects/zomatoRestoListApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "zomatoRestoListApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "zomatoRestoListApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "zomatoRestoListApp:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/zomatoRestoListApp/src/test.ts",
+            "polyfills": "projects/zomatoRestoListApp/src/polyfills.ts",
+            "tsConfig": "projects/zomatoRestoListApp/tsconfig.spec.json",
+            "karmaConfig": "projects/zomatoRestoListApp/karma.conf.js",
+            "assets": [
+              "projects/zomatoRestoListApp/src/favicon.ico",
+              "projects/zomatoRestoListApp/src/assets"
+            ],
+            "styles": [
+              "projects/zomatoRestoListApp/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/zomatoRestoListApp/tsconfig.app.json",
+              "projects/zomatoRestoListApp/tsconfig.spec.json",
+              "projects/zomatoRestoListApp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/zomatoRestoListApp/e2e/protractor.conf.js",
+            "devServerTarget": "zomatoRestoListApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "zomatoRestoListApp:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "zomatoRestoDetailsApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/zomatoRestoDetailsApp",
+      "sourceRoot": "projects/zomatoRestoDetailsApp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/zomatoRestoDetailsApp",
+            "index": "projects/zomatoRestoDetailsApp/src/index.html",
+            "main": "projects/zomatoRestoDetailsApp/src/main.ts",
+            "polyfills": "projects/zomatoRestoDetailsApp/src/polyfills.ts",
+            "tsConfig": "projects/zomatoRestoDetailsApp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/zomatoRestoDetailsApp/src/favicon.ico",
+              "projects/zomatoRestoDetailsApp/src/assets"
+            ],
+            "styles": [
+              "projects/zomatoRestoDetailsApp/src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/zomatoRestoDetailsApp/src/environments/environment.ts",
+                  "with": "projects/zomatoRestoDetailsApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "zomatoRestoDetailsApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "zomatoRestoDetailsApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "zomatoRestoDetailsApp:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/zomatoRestoDetailsApp/src/test.ts",
+            "polyfills": "projects/zomatoRestoDetailsApp/src/polyfills.ts",
+            "tsConfig": "projects/zomatoRestoDetailsApp/tsconfig.spec.json",
+            "karmaConfig": "projects/zomatoRestoDetailsApp/karma.conf.js",
+            "assets": [
+              "projects/zomatoRestoDetailsApp/src/favicon.ico",
+              "projects/zomatoRestoDetailsApp/src/assets"
+            ],
+            "styles": [
+              "projects/zomatoRestoDetailsApp/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/zomatoRestoDetailsApp/tsconfig.app.json",
+              "projects/zomatoRestoDetailsApp/tsconfig.spec.json",
+              "projects/zomatoRestoDetailsApp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/zomatoRestoDetailsApp/e2e/protractor.conf.js",
+            "devServerTarget": "zomatoRestoDetailsApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "zomatoRestoDetailsApp:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "d35d190f-0500-4342-bdad-f305995228f2"
+  },
+  "defaultProject": "zomatoRestoDetailsApp"
+}
